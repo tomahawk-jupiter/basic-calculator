@@ -1,5 +1,7 @@
 
-/* calc(10px + 20px); */
+/*
+make calculations within CSS
+calc(10px + 20px); */
 
 :root {
   --container-color: #555555;

@@ -8,6 +8,7 @@ const operatorBtn = document.querySelectorAll('.operator-key');
 let firstNumber = null;
 let operator = null;
 let secondNumber = null;
+let equalsPressed = false;
 
 // Also handles decimal point.
 const handleNumber = (e) => {
@@ -22,19 +23,7 @@ const handleNumber = (e) => {
   display.style.color = 'black';
 }
 
-const handleOperator = (e) => {
-  let input = e.target.innerText;
-  operator = input;
-  display.style.color = 'green';
-  // if (operator){
-  //   // then operator should act like equals
-  //   // newly added
-  //   handleEquals();
-  // }
-  secondNumber = null;
-}
-
-const handleEquals = () => {
+const calculation = () => {
   let answer = operator == '/' ? +firstNumber / +secondNumber
       : operator == '*' ? +firstNumber * +secondNumber
       : operator == '-' ? +firstNumber - +secondNumber
@@ -47,8 +36,29 @@ const handleEquals = () => {
       answer = 'max error';
     }
   }
+  return answer;
+}
+/*
+The operators act like equals when pressing a second time
+without pressing equals button, example:
+4 + 4 + (display 8) 4 + (display 12)
+*/
+const handleOperator = (e) => {
+  let input = e.target.innerText;
+  if (operator && equalsPressed == false){
+    firstNumber = calculation();
+    display.innerText = firstNumber;
+  }
+  operator = input;
+  display.style.color = 'green';
+  secondNumber = null;
+}
+
+const handleEquals = () => {
+  let answer = calculation();
   display.innerText = answer;
   firstNumber = answer;
+  equalsPressed = true;
 }
 
 const handleDelete = () => {
@@ -56,6 +66,7 @@ const handleDelete = () => {
   firstNumber = null;
   operator = null;
   secondNumber = null;
+  equalsPressed = false;
 }
 
 numberBtn.forEach(element => {
