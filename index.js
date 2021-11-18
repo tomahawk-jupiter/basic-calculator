@@ -1,54 +1,66 @@
 
-const btn = document.querySelectorAll('.btn');
+const numberBtn = document.querySelectorAll('.number-key');
 const display = document.querySelector('.display');
 const equals = document.querySelector('.equals-key');
+const deleteBtn = document.querySelectorAll('.delete-key');
+const operatorBtn = document.querySelectorAll('.operator-key');
 
 let firstNumber = null;
 let operator = null;
 let secondNumber = null;
 
-// operator functions:
-const divide = (a, b)=> {
-  return +a / +b;
-}
-const multiply = (a, b)=> {
-  return +a * +b;
-}
-const minus = (a, b)=> {
-  return +a - +b;
-}
-const add = (a, b) => {
-  return +a + +b;
+// Also handles decimal point.
+const handleNumber = (e) => {
+  let input = e.target.innerText;
+  if (!operator){
+    firstNumber = firstNumber === null ? input : firstNumber + input;
+    display.innerText = firstNumber;
+  } else if (operator) {
+    secondNumber = secondNumber === null ? input : secondNumber + input;
+    display.innerText = secondNumber;
+  }
+  display.style.color = 'black';
 }
 
-const handleClick = (e) => {
-  //console.log(e.target.innerText);
+const handleOperator = (e) => {
   let input = e.target.innerText;
-  if (firstNumber == null && /\d/g.test(input)){
-    firstNumber = input;
-    display.innerText = input;
-  } else if (firstNumber && /\/|\*|-|\+/.test(input)) {
-    operator = input;
-  } else if (firstNumber && operator && /\d/g.test(input)) {
-    secondNumber = input;
-  }
-  console.log(firstNumber);
-  console.log(operator);
-  console.log(secondNumber);
+  operator = input;
+  display.style.color = 'green';
 }
 
 const handleEquals = () => {
-  let answer = operator == '/' ? divide(firstNumber, secondNumber)
-      : operator == '*' ? multiply(firstNumber, secondNumber)
-      : operator == '-' ? minus(firstNumber, secondNumber)
-      : operator == '+' ? add(firstNumber, secondNumber)
+  let answer = operator == '/' ? firstNumber / secondNumber
+      : operator == '*' ? +firstNumber * +secondNumber
+      : operator == '-' ? +firstNumber - +secondNumber
+      : operator == '+' ? +firstNumber + +secondNumber
       : 'error';
 
-      display.innerText = answer;
+  if (String(answer).length > 9){
+    answer = answer.toFixed(2);
+    if (answer > 9){
+      answer = 'max error';
+    }
+  }
+  display.innerText = answer;
 }
 
-btn.forEach(element => {
-  element.addEventListener('click', handleClick);
+const handleDelete = () => {
+  display.innerText = 0;
+  firstNumber = null;
+  operator = null;
+  secondNumber = null;
+}
+
+numberBtn.forEach(element => {
+  element.addEventListener('click', handleNumber);
+});
+
+deleteBtn.forEach(element => {
+  element.addEventListener('click', handleDelete);
+});
+
+operatorBtn.forEach(element => {
+  element.addEventListener('click', handleOperator);
 });
 
 equals.addEventListener('click', handleEquals);
