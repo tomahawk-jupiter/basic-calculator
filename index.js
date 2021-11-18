@@ -14,11 +14,19 @@ let equalsPressed = false;
 const handleNumber = (e) => {
   let input = e.target.innerText;
   if (!operator){
-    firstNumber = firstNumber === null ? input : firstNumber + input;
-    display.innerText = firstNumber;
+    if (firstNumber && firstNumber.includes('.') && input == '.') {
+      display.innerText = '. error';
+    } else {
+      firstNumber = firstNumber === null ? input : firstNumber + input;
+      display.innerText = firstNumber;
+    }
   } else if (operator) {
-    secondNumber = secondNumber === null ? input : secondNumber + input;
-    display.innerText = secondNumber;
+    if (secondNumber && secondNumber.includes('.') && input == '.') {
+      display.innerText = '. error';
+    } else {
+      secondNumber = secondNumber === null ? input : secondNumber + input;
+      display.innerText = secondNumber;
+    }
   }
   display.style.color = 'black';
 }
