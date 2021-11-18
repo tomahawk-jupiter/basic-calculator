@@ -1,0 +1,106 @@
+
+/* calc(10px + 20px); */
+
+:root {
+  --container-color: #555555;
+  --display-color: #c7bcbcfc;
+  --digits-color: #141111;
+  --keypad-color: #222222;
+  --delete-color: #df3f3f;
+  --number-color: #678fef;
+  --operator-color: #9999dd;
+  --equals-color: #9bc7e3;
+
+  --container-width: 240px;
+  --container-height: 300px;
+
+  --keypad-width: 216px;
+  --keypad-height: 220px;
+
+  --display-width: 200px;
+  --display-height: 40px;
+
+  --button-width: 50px;
+  --button-height: 40px;
+
+  --equals-width: 104px;
+  --equals-height: 40px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+
+  font-family: monospace;
+  font-size: 20px;
+  background-color: #d1cab9;
+}
+
+
+.container {
+  background-color: var(--container-color);
+  width: var(--container-width);
+  height: var(--container-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: solid black 2px;
+  border-radius: 4px;
+}
+
+.display {
+  background-color: var(--display-color);
+  width: var(--display-width);
+  height: var(--display-height);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
+  color: var(--digits-color);
+  border: solid black 1px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.keypad {
+  background-color: var(--keypad-color);
+  width: var(--keypad-width);
+  height: var(--keypad-height);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.delete-key {
+  background-color: var(--delete-color);
+  width: var(--button-width);
+  height: var(--button-height);
+}
+
+.number-key {
+  background-color: var(--number-color);
+  width: var(--button-width);
+  height: var(--button-height);
+}
+
+.operator-key {
+  background-color: var(--operator-color);
+  width: var(--button-width);
+  height: var(--button-height);
+}
+
+.equals-key {
+  background-color: var(--equals-color);
+  width: var(--equals-width);
+  height: var(--equals-height);
+}
+
+.number-key, .operator-key, .delete-key, .equals-key {
+  margin: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
