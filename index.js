@@ -26,10 +26,16 @@ const handleOperator = (e) => {
   let input = e.target.innerText;
   operator = input;
   display.style.color = 'green';
+  // if (operator){
+  //   // then operator should act like equals
+  //   // newly added
+  //   handleEquals();
+  // }
+  secondNumber = null;
 }
 
 const handleEquals = () => {
-  let answer = operator == '/' ? firstNumber / secondNumber
+  let answer = operator == '/' ? +firstNumber / +secondNumber
       : operator == '*' ? +firstNumber * +secondNumber
       : operator == '-' ? +firstNumber - +secondNumber
       : operator == '+' ? +firstNumber + +secondNumber
@@ -42,6 +48,7 @@ const handleEquals = () => {
     }
   }
   display.innerText = answer;
+  firstNumber = answer;
 }
 
 const handleDelete = () => {
