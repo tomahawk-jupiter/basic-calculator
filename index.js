@@ -21,7 +21,6 @@ const handleNumber = (e) => {
   } else if (e.type === 'click') {
     input = e.target.innerText;
   }
-console.log(input);
   if (!operator && !off){
     if (firstNumber && firstNumber.includes('.') && input === '.') {
       display.innerText = '. error';
