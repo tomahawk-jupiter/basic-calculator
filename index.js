@@ -16,15 +16,13 @@ let off = false;
 // Also handles decimal point.
 const handleNumber = (e) => {
   let input;
-  if (e.type === 'keydown' && /[0-9]|\./.test(e.key)) {
+  if (e.type === 'keydown') {
     input = e.key;
   } else if (e.type === 'click') {
     input = e.target.innerText;
-  } else {
-    input = '';
   }
-
-  if (!operator && !off && input){
+console.log(input);
+  if (!operator && !off){
     if (firstNumber && firstNumber.includes('.') && input === '.') {
       display.innerText = '. error';
     } else {
@@ -32,7 +30,7 @@ const handleNumber = (e) => {
       : firstNumber === null ? input : firstNumber + input;
       display.innerText = firstNumber;
     }
-  } else if (operator && !off && input) {
+  } else if (operator && !off) {
     if (secondNumber && secondNumber.includes('.') && input === '.') {
       display.innerText = '. error';
     } else {
@@ -61,20 +59,15 @@ const calculation = () => {
     return answer;
   }
 }
-/*
-The operators act like equals when pressing a second time
-without pressing equals button, example:
-4 + 4 + (display 8) 4 + (display 12)
-*/
+
 const handleOperator = (e) => {
   let input;
-  if (e.type === 'keydown' && /\/|\*|-|\+/.test(e.key)) {
+  if (e.type === 'keydown') {
     input = e.key;
   } else if (e.type === 'click') {
     input = e.target.innerText;
-  } else {
-    input = '';
   }
+
   if (!off && input) {
     if (operator && equalsPressed == false){
       firstNumber = calculation();
@@ -146,6 +139,7 @@ operatorBtn.forEach(element => {
 equals.addEventListener('click', handleEquals);
 
 document.addEventListener('keydown', (e)=> {
+  console.log(e.key);
   if (/\/|\*|-|\+/.test(e.key)) {
     handleOperator(e);
   }
@@ -154,5 +148,11 @@ document.addEventListener('keydown', (e)=> {
   }
   if (e.key === 'Enter') {
     handleEquals();
+  }
+  if (e.key === 'Delete') {
+    handleClear();
+  }
+  if (e.key === 'Backspace') {
+    handleBack();
   }
 });
