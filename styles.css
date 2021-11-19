@@ -76,31 +76,31 @@ body {
   user-select: none;
 }
 
-.delete-key {
+.delete-btn {
   background-color: var(--delete-color);
   width: var(--button-width);
   height: var(--button-height);
 }
 
-.number-key {
+.number-btn {
   background-color: var(--number-color);
   width: var(--button-width);
   height: var(--button-height);
 }
 
-.operator-key {
+.operator-btn {
   background-color: var(--operator-color);
   width: var(--button-width);
   height: var(--button-height);
 }
 
-.equals-key {
+.equals-btn {
   background-color: var(--equals-color);
   width: var(--equals-width);
   height: var(--equals-height);
 }
 
-.number-key, .operator-key, .delete-key, .equals-key {
+.number-btn, .operator-btn, .delete-btn, .equals-btn {
   margin: 2px;
   display: flex;
   justify-content: center;
