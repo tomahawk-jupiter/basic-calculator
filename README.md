@@ -2,7 +2,7 @@
 
 A basic calculator using vanilla javascript.
 
-[Live Demo](https://tomahawk-jupiter.github.io/calculator/)
+[Live Demo](https://tomahawk-jupiter.github.io/basic-calculator/)
 
 The keyboard can be used to input calculations aswell as the onscreen buttons.
 
